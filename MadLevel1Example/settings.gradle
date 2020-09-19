@@ -1,2 +1,0 @@
-include ':app'
-rootProject.name = "MadLevel1Example"
