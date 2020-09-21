@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         questions.add(Question("Mobile Application Development grants 12 ECTS.", false))
         questions.add(Question("A Unit in Kotlin corresponds to a void in Java", true))
         questions.add(Question("In Kotlin, 'when' replaces the 'switch' operator in Java", true))
-        
+
         questionAdapter.notifyDataSetChanged()
     }
 }
