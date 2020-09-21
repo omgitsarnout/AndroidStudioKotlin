@@ -2,11 +2,10 @@ package com.example.madlevel2task2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.recyclerview.widget.*
 import com.example.madlevel2task2.databinding.ActivityMainBinding
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,5 +34,39 @@ class MainActivity : AppCompatActivity() {
         questions.add(Question("In Kotlin, 'when' replaces the 'switch' operator in Java", true))
 
         questionAdapter.notifyDataSetChanged()
+
+        createItemTouchHelper().attachToRecyclerView(rvQuestions)
+    }
+
+    private fun createItemTouchHelper(): ItemTouchHelper {
+
+        // Callback which is used to create the ItemTouch helper. Only enables left swipe.
+        // Use ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) to also enable right swipe.
+        val callback = object : ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+
+            // Enables or Disables the ability to move items up and down.
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            // Callback triggered when a user swiped an item.
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                var q: Question
+                q = questions.get(position)
+                if (q.questionAnswer == true && direction == 8) {
+                    Snackbar.make(rvQuestions, "correct", Snackbar.LENGTH_SHORT).show()
+                } else if (q.questionAnswer == false && direction == 4) {
+                    Snackbar.make(rvQuestions, "correct", Snackbar.LENGTH_SHORT).show()
+                } else {
+                    Snackbar.make(rvQuestions, "incorrect", Snackbar.LENGTH_SHORT).show()
+                }
+            }
+        }
+        return ItemTouchHelper(callback)
     }
 }
