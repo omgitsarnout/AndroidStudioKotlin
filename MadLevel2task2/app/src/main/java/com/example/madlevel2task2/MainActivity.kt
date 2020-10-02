@@ -58,10 +58,14 @@ class MainActivity : AppCompatActivity() {
                 val position = viewHolder.adapterPosition
                 var q: Question
                 q = questions.get(position)
-                if (q.questionAnswer == true && direction == 8) {
+                if (q.questionAnswer == true && direction == ItemTouchHelper.RIGHT) {
                     Snackbar.make(rvQuestions, "correct", Snackbar.LENGTH_SHORT).show()
-                } else if (q.questionAnswer == false && direction == 4) {
+                    questions.removeAt(position)
+                    questionAdapter.notifyDataSetChanged()
+                } else if (q.questionAnswer == false && direction == ItemTouchHelper.LEFT) {
                     Snackbar.make(rvQuestions, "correct", Snackbar.LENGTH_SHORT).show()
+                    questions.removeAt(position)
+                    questionAdapter.notifyDataSetChanged()
                 } else {
                     Snackbar.make(rvQuestions, "incorrect", Snackbar.LENGTH_SHORT).show()
                 }
