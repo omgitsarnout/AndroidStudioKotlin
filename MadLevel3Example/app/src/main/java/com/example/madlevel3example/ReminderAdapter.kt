@@ -4,17 +4,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.madlevel2example.databinding.ItemReminderBinding
+import com.example.madlevel3example.R
+import kotlinx.android.synthetic.main.item_reminder.view.*
 
 class ReminderAdapter(private val reminders: List<Reminder>) : RecyclerView.Adapter<ReminderAdapter.ViewHolder>(){
 
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val binding = ItemReminderBinding.bind(itemView)
-
         fun databind(reminder: Reminder) {
-            binding.tvReminder.text = reminder.reminderText
+            itemView.tvReminder.text = reminder.reminderText
         }
     }
 
