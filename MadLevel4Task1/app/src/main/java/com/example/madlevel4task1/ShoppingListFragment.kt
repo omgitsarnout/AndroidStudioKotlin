@@ -51,6 +51,10 @@ class ShoppingListFragment : Fragment() {
         fabAddProduct.setOnClickListener {
             showAddProductdialog();
         }
+
+        fabDeleteAll.setOnClickListener {
+            removeAllProducts()
+        }
     }
 
     private fun initRv() {
@@ -62,6 +66,16 @@ class ShoppingListFragment : Fragment() {
         createItemTouchHelper().attachToRecyclerView(rvShoppingList)
     }
 
+    private fun removeAllProducts() {
+        mainScope.launch {
+            withContext(Dispatchers.IO) {
+                productRepository.deleteAllProducts()
+            }
+            getShoppingListFromDatabase()
+        }
+    }
+
+
 
     private fun getShoppingListFromDatabase() {
         mainScope.launch {
@@ -71,18 +85,6 @@ class ShoppingListFragment : Fragment() {
             this@ShoppingListFragment.products.clear()
             this@ShoppingListFragment.products.addAll(shoppingList)
             this@ShoppingListFragment.shoppingListAdapter.notifyDataSetChanged()
-        }
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        productRepository = ProductRepository(requireContext())
-        getShoppingListFromDatabase()
-
-        initRv()
-
-        fabAddProduct.setOnClickListener {
-            showAddProductdialog();
         }
     }
 
@@ -106,7 +108,7 @@ class ShoppingListFragment : Fragment() {
             mainScope.launch {
                 val product = Product(
                     name = txtProductName.text.toString(),
-                    quantity = txtAmount.text.toString().toInt()
+                    quantity = txtAmount.text.toString().toLong()
                 )
 
                 withContext(Dispatchers.IO) {
