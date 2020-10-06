@@ -90,19 +90,6 @@ class FirstFragment : Fragment() {
             withContext(Dispatchers.IO) {
                 gameRepository.insertGame(game)
             }
-
-            /*getGameListFromDatabase()*/
         }
     }
-
-    /*private fun getGameListFromDatabase() {
-        mainScope.launch {
-            val shoppingList = withContext(Dispatchers.IO) {
-                gameRepository.getAllProducts()
-            }
-            this@SecondFragment.products.clear()
-            this@ShoppingListFragment.products.addAll(shoppingList)
-            this@ShoppingListFragment.shoppingListAdapter.notifyDataSetChanged()
-        }
-    }*/
 }

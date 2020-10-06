@@ -60,7 +60,7 @@ class SecondFragment : Fragment() {
         }
     }
 
-    private fun getGameListFromDatabase() {
+    public fun getGameListFromDatabase() {
         mainScope.launch {
             val shoppingList = withContext(Dispatchers.IO) {
                 gameRepository.getAllGames()

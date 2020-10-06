@@ -8,4 +8,10 @@
         app:showAsAction="always"
         android:icon="@android:drawable/ic_menu_recent_history"
         />
+    <item
+        android:id="@+id/btnDeleteAllGames"
+        android:title=""
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_delete"
+        />
 </menu>
