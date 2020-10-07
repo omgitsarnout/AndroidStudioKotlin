@@ -79,10 +79,13 @@ class MainActivity : AppCompatActivity() {
             withContext(Dispatchers.IO) {
                 gameRepository.deleteAllGames()
 
-                /*
-                var fragment = fm.findFragmentById(R.id.SecondFragment) as SecondFragment
-                fragment.getGameListFromDatabase()
-                 */
+                /*(fm.findFragmentById(R.id.SecondFragment) as SecondFragment?)?.let {
+                    it.getGameListFromDatabase()
+                }*/
+
+                /*val fragment = fm.findFragmentById(R.id.SecondFragment) as SecondFragment
+                fragment.getGameListFromDatabase()*/
+
             }
         }
     }

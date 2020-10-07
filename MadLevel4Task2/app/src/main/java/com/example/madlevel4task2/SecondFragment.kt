@@ -1,6 +1,8 @@
 package com.example.madlevel4task2
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +17,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import android.util.Log
+import kotlin.concurrent.fixedRateTimer
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -35,6 +39,8 @@ class SecondFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_second, container, false)
     }
 
+    val mainHandler = Handler(Looper.getMainLooper())
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -42,6 +48,10 @@ class SecondFragment : Fragment() {
         getGameListFromDatabase()
 
         initRv()
+
+        fixedRateTimer("timer",false,0,500){
+            getGameListFromDatabase()
+        }
     }
 
     private fun initRv() {
@@ -62,6 +72,7 @@ class SecondFragment : Fragment() {
 
     public fun getGameListFromDatabase() {
         mainScope.launch {
+            Log.w("TAG", "GETGAMELISTFROMDATABASE")
             val shoppingList = withContext(Dispatchers.IO) {
                 gameRepository.getAllGames()
             }
