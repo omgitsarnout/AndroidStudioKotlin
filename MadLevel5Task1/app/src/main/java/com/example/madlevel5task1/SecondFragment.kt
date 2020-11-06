@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -36,6 +37,7 @@ class SecondFragment : Fragment() {
         btnSave.setOnClickListener{
             onEditNote()
         }
+        observeNote()
     }
 
     fun onEditNote() {
@@ -51,6 +53,27 @@ class SecondFragment : Fragment() {
                 "title required", Toast.LENGTH_SHORT
             ).show()
         }
-
     }
+
+    private fun observeNote() {
+//fill the text fields with the current text and title from the viewmodel
+        viewModel.note.observe(viewLifecycleOwner, Observer {
+                note  ->
+            note?.let {
+                txtName.setText(it.title)
+                txtNote.setText(it.text)
+            }
+
+        })
+
+        viewModel.error.observe(viewLifecycleOwner, Observer { message ->
+            Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+        })
+
+        viewModel.success.observe(viewLifecycleOwner, Observer {     success ->
+            //"pop" the backstack, this means we destroy this    fragment and go back to the RemindersFragment
+            findNavController().popBackStack()
+        })
+    }
+
 }
