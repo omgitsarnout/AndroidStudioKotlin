@@ -6,12 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_second.*
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class SecondFragment : Fragment() {
+
+    private lateinit var navController: NavController
+    private val viewModel: NoteViewModel by viewModels()
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -24,8 +33,24 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.button_second).setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+        btnSave.setOnClickListener{
+            onEditNote()
         }
+    }
+
+    fun onEditNote() {
+        val noteTitle = txtName.text.toString();
+        val note = txtNote.text.toString();
+
+        if (noteTitle.isNotBlank()) {
+            viewModel.updateNote(noteTitle, note)
+            findNavController().popBackStack()
+        } else {
+            Toast.makeText(
+                activity,
+                "title required", Toast.LENGTH_SHORT
+            ).show()
+        }
+
     }
 }

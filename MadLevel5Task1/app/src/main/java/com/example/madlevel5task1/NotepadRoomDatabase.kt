@@ -18,7 +18,7 @@ abstract class NotepadRoomDatabase : RoomDatabase() {
     abstract fun noteDao(): NoteDao
 
     companion object {
-        private const val DATABASE_NAME = "NOTEPAD_DATABASE"
+        private const val DATABASE_NAME = "NOTEPAD_DATABASE2"
 
         @Volatile
         private var INSTANCE: NotepadRoomDatabase? = null
@@ -37,7 +37,7 @@ abstract class NotepadRoomDatabase : RoomDatabase() {
                                     super.onCreate(db)
                                     INSTANCE?.let { database ->
                                         CoroutineScope(Dispatchers.IO).launch {
-                                            database.noteDao().insertNote(Note("Title", Date(), ""))
+                                            database.noteDao().insertNote(Note("testTitle", Date(), "testText"))
                                         }
                                     }
                                 }

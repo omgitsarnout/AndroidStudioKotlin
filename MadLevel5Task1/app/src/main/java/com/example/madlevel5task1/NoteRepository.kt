@@ -16,6 +16,10 @@ class NoteRepository(context: Context) {
         return noteDao.getNotepad()
     }
 
+    suspend fun insertNote(note: Note) {
+        noteDao.insertNote(note);
+    }
+
     suspend fun updateNotepad(note: Note) {
         noteDao.updateNote(note)
     }
