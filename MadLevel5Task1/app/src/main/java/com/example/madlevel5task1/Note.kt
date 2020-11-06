@@ -3,14 +3,15 @@ package com.example.madlevel5task1
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.*
 
 @Entity(tableName = "noteTable")
-class Note {
+class Note (
     @ColumnInfo(name = "title")
     var title: String,
 
     @ColumnInfo(name = "lastUpdated")
-    var lastUpdated: String,
+    var lastUpdated: Date,
 
     @ColumnInfo(name = "text")
     var text: String,
@@ -18,4 +19,5 @@ class Note {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var id: Long? = null
-}
+)
+
