@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "300009078153",
+    "firebase_url": "https://kotlinwhatsapprebuild.firebaseio.com",
+    "project_id": "kotlinwhatsapprebuild",
+    "storage_bucket": "kotlinwhatsapprebuild.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:300009078153:android:fa90fac1a6f2a8d4bf3558",
+        "android_client_info": {
+          "package_name": "com.example.kotlinwhatsapprebuild2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "300009078153-l6bbluvruv7ouj500nghidbffhbocco3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFDBN27H1Y6Gkl0rN822IQMoJDNIa6pi0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "300009078153-l6bbluvruv7ouj500nghidbffhbocco3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
