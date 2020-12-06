@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_messagesFragment_to_fragment_newmessage"
             app:destination="@id/fragment_newmessage" />
+        <action
+            android:id="@+id/action_messagesFragment_to_chatActivity"
+            app:destination="@id/chatActivity" />
     </fragment>
     <fragment
         android:id="@+id/fragment_newmessage"

@@ -92,6 +92,12 @@ class ChatActivity : Fragment() {
         val chatMessage = ChatMessage(reference.key!!, text, fromId!!, toId, System.currentTimeMillis());
         reference.setValue(chatMessage).addOnSuccessListener { Log.d("d", "Message sent") }
         toReference.setValue(chatMessage).addOnSuccessListener { Log.d("d", "ToMessage sent"); et_message.text.clear(); rv_chat.scrollToPosition(adapter.itemCount - 1) }
+
+        val latestMessageRef = FirebaseDatabase.getInstance().getReference("/latest-messages/$fromId/$toId")
+        latestMessageRef.setValue(chatMessage)
+
+        val latestMessageRef2 = FirebaseDatabase.getInstance().getReference("/latest-messages/$toId/$fromId")
+        latestMessageRef2.setValue(chatMessage)
     }
 }
 
