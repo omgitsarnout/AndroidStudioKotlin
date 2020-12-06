@@ -39,5 +39,22 @@
         <action
             android:id="@+id/action_messagesFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_messagesFragment_to_fragment_newmessage"
+            app:destination="@id/fragment_newmessage" />
     </fragment>
+    <fragment
+        android:id="@+id/fragment_newmessage"
+        android:name="com.example.kotlinwhatsapprebuild2.fragment_newmessage"
+        android:label="fragment_newmessage"
+        tools:layout="@layout/fragment_newmessage" >
+        <action
+            android:id="@+id/action_fragment_newmessage_to_chatActivity"
+            app:destination="@id/chatActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatActivity"
+        android:name="com.example.kotlinwhatsapprebuild2.ChatActivity"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" />
 </navigation>
