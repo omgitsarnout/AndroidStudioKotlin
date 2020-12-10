@@ -19,11 +19,11 @@ class MoviesRepository {
     /**
      * suspend function that calls a suspend function from the numbersApi call
      */
-    suspend fun getPopularMovies()  {
+    suspend fun getPopularMovies(year: String)  {
         try {
             //timeout the request after 5 seconds
             val result = withTimeout(5_000) {
-                moviesApiService.getMostPopularMovies("2017")
+                moviesApiService.getMostPopularMovies(year)
             }
 
             _movies.value = result

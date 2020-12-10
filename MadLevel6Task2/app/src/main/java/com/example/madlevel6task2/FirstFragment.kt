@@ -39,7 +39,7 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btnSubmit.setOnClickListener {
-            viewModel.getPopularMovies()
+            viewModel.getPopularMovies(etYear.text.toString())
         }
         moviesAdapter = MovieAdapter(movies, ::onMovieClick)
         rvMovies.adapter = moviesAdapter
