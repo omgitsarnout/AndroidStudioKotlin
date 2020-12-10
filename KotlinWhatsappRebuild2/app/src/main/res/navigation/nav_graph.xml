@@ -54,10 +54,17 @@
         <action
             android:id="@+id/action_fragment_newmessage_to_chatActivity"
             app:destination="@id/chatActivity" />
+        <action
+            android:id="@+id/action_fragment_newmessage_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
     </fragment>
     <fragment
         android:id="@+id/chatActivity"
         android:name="com.example.kotlinwhatsapprebuild2.ChatActivity"
         android:label="fragment_chat"
-        tools:layout="@layout/fragment_chat" />
+        tools:layout="@layout/fragment_chat" >
+        <action
+            android:id="@+id/action_chatActivity_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
+    </fragment>
 </navigation>

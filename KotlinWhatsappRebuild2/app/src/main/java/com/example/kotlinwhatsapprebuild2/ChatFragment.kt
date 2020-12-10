@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
@@ -43,6 +44,7 @@ class ChatActivity : Fragment() {
 
         toUser = arguments?.getParcelable<User>("userItem")
         et_message.hint = "bericht voor " + toUser!!.username
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title = toUser!!.username
 
         listenForMessages()
 

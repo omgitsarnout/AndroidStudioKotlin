@@ -2,14 +2,11 @@ package com.example.kotlinwhatsapprebuild2
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.firebase.auth.FirebaseAuth
@@ -40,7 +37,12 @@ class MessagesFragment : Fragment() {
         super.onCreate(savedInstanceState)
         fetchCurrentUser()
         checkIfUserLoggedIn()
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title = "Berichten"
+    }
 
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title = "Berichten"
     }
 
     val recentMessagesHashMap = HashMap<String, ChatMessage?>()

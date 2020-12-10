@@ -6,8 +6,10 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.navigation.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,7 +30,20 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         FirebaseAuth.getInstance().signOut()
-        findNavController(R.id.nav_host_fragment).navigate(R.id.action_messagesFragment_to_SecondFragment)
+        try {
+            try {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.action_messagesFragment_to_SecondFragment)
+            } catch (e: Exception) {
+                try {
+                    findNavController(R.id.nav_host_fragment).navigate(R.id.action_fragment_newmessage_to_SecondFragment)
+                } catch (e: Exception) {
+                    findNavController(R.id.nav_host_fragment).navigate(R.id.action_chatActivity_to_SecondFragment)
+                }
+            }
+        } catch (e: Exception) {
+            Toast.makeText(this, "Je bent al uitgelogd", Toast.LENGTH_SHORT).show()
+        }
+
         return true
     }
 }
